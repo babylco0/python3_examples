@@ -1,0 +1,28 @@
+<MainLayout>:
+    button: button1
+    Button:
+        id: button1
+        text: 'Button ObjectProperty'
+    Button:
+        id: button2
+        text: 'Button kv'
+        on_press: root.state_changed(self, self.state)
+        on_release: root.state_changed(self, self.state)
+    Button:
+        id: button3
+        text: 'Button ids'
+    Button:
+        id: button4
+        text: 'Button access kv'
+        on_press: button1.state = 'down'
+        on_release: button1.state = 'normal'
+    Button:
+        id: button5
+        text: 'Button access label'
+        on_press: root.label.text = '{0} state is {1}'.format(self.text, self.state)
+        on_release: root.label.text = '{0} state is {1}'.format(self.text, self.state)
+    Button:
+        id: button6
+        text: 'Button access app'
+        on_press: root.label.text = '{0}:{1} state is {2}'.format(app.name, self.text, self.state)
+        on_release: root.label.text = '{0}:{1} state is {2}'.format(app.name, self.text, self.state)
