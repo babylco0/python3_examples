@@ -8,6 +8,7 @@ from kivy.graphics import Line
 from kivy.lang.builder import Builder
 from kivy.properties import ObjectProperty
 from kivy.uix.gridlayout import GridLayout
+from kivy.uix.label import Label
 from kivy.uix.widget import Widget
 
 __version__ = "2.0.0"
@@ -92,6 +93,17 @@ class AnalogClock(Widget):
         # 添加刻度至控件
         for s in self.scales:
             self.canvas.add(s)
+        # 数字指示
+        self.time_labels = []
+        for n in range(0, 12):
+            if n == 0:
+                ltext = '12'
+            else:
+                ltext = str(n)
+            label = Label(text=ltext)
+            self.time_labels.append(label)
+        for time_label in self.time_labels:
+            self.add_widget(time_label)
         # 表针
         with self.canvas:
             # 秒针
@@ -106,6 +118,7 @@ class AnalogClock(Widget):
             self.hour_hand = Line(
                 points=[self.center_x, self.center_y, self.center_x, self.center_y + self.radius / 2],
                 width=8)
+
         # 绑定pos size重绘图形
         self.bind(pos=self.redraw, size=self.redraw)
         Clock.schedule_interval(self.update_time, 0.5)  # 每0.5s调用一次update_time函数
@@ -135,6 +148,23 @@ class AnalogClock(Widget):
         # 添加重绘的刻度
         for s in self.scales:
             self.canvas.add(s)
+        # 重绘数字指示
+        for time_label in self.time_labels:
+            self.remove_widget(time_label)
+        self.time_labels.clear()
+        for n in range(0, 12):
+            if n == 0:
+                ltext = '12'
+            else:
+                ltext = str(n)
+            label = Label(text=ltext,
+                          color=(0, 0, 0, 1),
+                          size=(50, 50),
+                          pos=(self.center_x + (self.radius * 7 / 10) * math.sin(n * math.pi / 6) - 25,
+                               self.center_y + (self.radius * 7 / 10) * math.cos(n * math.pi / 6) - 25))
+            self.time_labels.append(label)
+        for time_label in self.time_labels:
+            self.add_widget(time_label)
         # 重绘表针
         self.update_time(0.5)
 
