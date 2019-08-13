@@ -11,7 +11,7 @@ from kivy.uix.gridlayout import GridLayout
 from kivy.uix.label import Label
 from kivy.uix.widget import Widget
 
-__version__ = "2.0.0"
+__version__ = "2.0.1"
 
 Builder.load_string("""
 <DigitalClock>:
@@ -100,7 +100,11 @@ class AnalogClock(Widget):
                 ltext = '12'
             else:
                 ltext = str(n)
-            label = Label(text=ltext)
+            label = Label(text=ltext,
+                          color=(0, 0, 0, 1),
+                          size=(50, 50),
+                          pos=(self.center_x + self.radius * math.sin(n * math.pi / 6),
+                               self.center_y + self.radius * math.cos(n * math.pi / 6)))
             self.time_labels.append(label)
         for time_label in self.time_labels:
             self.add_widget(time_label)
