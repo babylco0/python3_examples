@@ -1,8 +1,7 @@
-import time
 import _thread
+import time
 
 from kivy.app import App
-from kivy.clock import Clock
 from kivy.lang.builder import Builder
 from kivy.properties import ObjectProperty, NumericProperty
 from kivy.uix.boxlayout import BoxLayout
