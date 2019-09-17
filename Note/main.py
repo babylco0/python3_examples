@@ -8,7 +8,6 @@ from kivy.clock import Clock
 from kivy.lang.builder import Builder
 from kivy.properties import BooleanProperty, StringProperty, NumericProperty, ListProperty, \
     AliasProperty
-from kivy.storage.jsonstore import JsonStore
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.floatlayout import FloatLayout
 from kivy.uix.screenmanager import ScreenManager, Screen, SlideTransition
