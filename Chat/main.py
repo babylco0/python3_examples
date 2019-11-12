@@ -174,6 +174,7 @@ Builder.load_string("""
                 id: ti_message
                 font_name: 'msyh.ttc'
                 hint_text: 'Input message...'
+                text_language: 'zh_CN'
                 on_focus: root.edit_message()
             Button:
                 size_hint_x: None
